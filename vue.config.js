@@ -1,6 +1,18 @@
 const path = require('path')
 
+const webpack = require('webpack')
+const fs = require('fs')
+const packageJson = fs.readFileSync('./package.json')
+const version = JSON.parse(packageJson).version || 0
+
 module.exports = {
+
+  runtimeCompiler: true,
+  devServer: {
+    proxy: 'http://localhost:8000',
+  },
+  outputDir: path.resolve(__dirname, "./dist"),
+  // assetsDir: "../backend/templates/SPA",
   publicPath: '/',
   lintOnSave: false,
   css: {
@@ -13,6 +25,13 @@ module.exports = {
     },
   },
   configureWebpack: {
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          PACKAGE_VERSION: '"' + version + '"'
+        }
+      })
+    ],
     resolve: {
       alias: {
         '@themeConfig': path.resolve(__dirname, 'themeConfig.js'),
@@ -23,6 +42,8 @@ module.exports = {
     },
   },
   chainWebpack: config => {
+    config.plugins.delete('prefetch'); // for async routes
+    config.plugins.delete('preload'); // for CSS
     config.module
       .rule('vue')
       .use('vue-loader')

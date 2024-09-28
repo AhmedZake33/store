@@ -6,19 +6,14 @@
     <div class="content-overlay" />
     <div class="header-navbar-shadow" />
     <div
-      class="content-wrapper"
+      class="content-wrapper position-relative"
       :class="contentWidth === 'boxed' ? 'container p-0' : null"
     >
       <slot name="breadcrumb">
         <app-breadcrumb />
       </slot>
-      <div class="content-body">
-        <transition
-          :name="routerTransition"
-          mode="out-in"
-        >
+      <div class="content-body pt-2">
           <slot />
-        </transition>
       </div>
     </div>
   </div>
@@ -33,10 +28,10 @@ export default {
     AppBreadcrumb,
   },
   setup() {
-    const { routerTransition, contentWidth } = useAppConfig()
+    const {contentWidth } = useAppConfig()
 
     return {
-      routerTransition, contentWidth,
+      contentWidth,
     }
   },
 }

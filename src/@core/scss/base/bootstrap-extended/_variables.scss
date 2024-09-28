@@ -20,15 +20,18 @@ $gray-600: #b8c2cc !default; // $gray
 $gray-700: #4e5154 !default;
 $gray-800: #1e1e1e !default; // $gray-dark
 $gray-900: #2a2e30 !default;
+$gray-950: #f5f5f5 !default;
 $black: #22292f !default; // 231f48 22292f
+$petrol: #054978 !default; // 231f48 22292f
 
 $purple: #7367f0 !default; //$primary
 $green: #28c76f !default; //$success
 $blue: #00cfe8 !default; //$info
 $orange: #ff9f43 !default; //$warning
 $red: #ea5455 !default; //$danger
+$blue_bold: #054978 !default; //$danger
 
-$primary: $purple !default;
+$primary: $blue_bold !default;
 $secondary: #82868b !default;
 $info: $blue !default;
 $warning: $orange !default;
@@ -90,7 +93,7 @@ $spacers: map-merge(
 //
 // Settings for the `<body>` element.
 $body-bg: #f8f8f8 !default;
-$body-color: #6e6b7b !default;
+$body-color: #746D69 !default;
 
 // Links
 //
@@ -235,7 +238,7 @@ $input-focus-box-shadow: 0 3px 10px 0 rgba($black, 0.1) !default;
 $input-placeholder-color: $text-muted !default;
 $input-plaintext-color: $body-color !default;
 
-$input-height: 2.714rem !default;
+$input-height: 2.750rem !default;
 $input-height-sm: 2.142rem !default;
 $input-height-lg: 3.2857rem !default;
 

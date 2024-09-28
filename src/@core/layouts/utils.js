@@ -45,10 +45,15 @@ export const isNavLinkActive = link => {
 
   // Check if provided route matches route's matched route
   const resolveRoutedName = resolveNavDataRouteName(link)
-
   if (!resolveRoutedName) return false
-
-  return matchedRoutes.some(route => route.name === resolveRoutedName || route.meta.navActiveLink === resolveRoutedName)
+  let firstRouteName;
+  if(resolveRoutedName.length > 5){
+    firstRouteName = resolveRoutedName.slice(0, 8);
+  }else{
+    firstRouteName = resolveRoutedName.slice(0, 5);
+  }
+  
+  return matchedRoutes.some(route => route.name === resolveRoutedName  || route.meta.navActiveLink === resolveRoutedName)
 }
 
 /**

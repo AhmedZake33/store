@@ -1,0 +1,96 @@
+{
+  "_from": "vue-excel-editor",
+  "_id": "vue-excel-editor@1.5.5",
+  "_inBundle": false,
+  "_integrity": "sha512-6YRcRcyvrdscQpu6TKLwY8KWKy0gq4mzUerCz3yny5XMMEK3bNi7Ui6lghRCxmSh1dfczIDQzPK5CpfxZOsIUA==",
+  "_location": "/vue-excel-editor",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "vue-excel-editor",
+    "name": "vue-excel-editor",
+    "escapedName": "vue-excel-editor",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/vue-excel-editor/-/vue-excel-editor-1.5.5.tgz",
+  "_shasum": "aa2cfdde90ba44b363f1b1094a488b6c6e5cfb1a",
+  "_spec": "vue-excel-editor",
+  "_where": "E:\\poject\\excel\\excel",
+  "author": {
+    "name": "Kenneth Cheng"
+  },
+  "bugs": {
+    "url": "https://github.com/cscan/vue-excel-editor/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "moment": "^2.24.0",
+    "vue2-datepicker": "^3.3.0",
+    "vuedraggable": "^2.23.2",
+    "xlsx": "^0.17.0"
+  },
+  "deprecated": false,
+  "description": "Vue2 plugin for displaying and editing the array-of-object in Excel style",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "rollup": "^1.17.0",
+    "rollup-plugin-babel-minify": "^9.1.1",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-css-porter": "^1.0.2",
+    "rollup-plugin-vue": "^5.1.5",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "email": "apple.6502@gmail.com",
+  "homepage": "https://github.com/cscan/vue-excel-editor#readme",
+  "keywords": [
+    "vue",
+    "vue2",
+    "vuejs",
+    "excel",
+    "data",
+    "grid",
+    "table",
+    "v-model",
+    "editor",
+    "editable",
+    "javascript",
+    "DHTML",
+    "no-jquery",
+    "grid-editor",
+    "online-editor",
+    "data-grid",
+    "data-table",
+    "spreadsheet",
+    "tabular-data",
+    "edit-cell",
+    "editable-table",
+    "data-spreadsheet",
+    "bootstrap",
+    "responsive",
+    "navigatable",
+    "contenteditable"
+  ],
+  "license": "MIT",
+  "main": "src/main.js",
+  "name": "vue-excel-editor",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cscan/vue-excel-editor.git"
+  },
+  "scripts": {
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "build:es": "rollup --config build/rollup.config.js --format es --file dist/vue-excel-editor.esm.js",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/vue-excel-editor.umd.js",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/vue-excel-editor.min.js"
+  },
+  "version": "1.5.5"
+}

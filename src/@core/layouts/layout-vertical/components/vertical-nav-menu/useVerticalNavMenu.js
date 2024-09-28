@@ -6,7 +6,9 @@ export default function useVerticalNavMenu(props) {
   // isVerticalMenuCollapsed
   // ------------------------------------------------
   const isVerticalMenuCollapsed = computed({
-    get: () => store.state.verticalMenu.isVerticalMenuCollapsed,
+    get: () => {
+      return store.state.verticalMenu.isVerticalMenuCollapsed
+  },
     set: val => {
       store.commit('verticalMenu/UPDATE_VERTICAL_MENU_COLLAPSED', val)
     },
@@ -29,6 +31,12 @@ export default function useVerticalNavMenu(props) {
   }
 
   const toggleCollapsed = () => {
+    let data = localStorage.getItem('verticalMenu')
+    if(data){
+      localStorage.setItem('verticalMenu',false)
+    }else{
+      localStorage.setItem('verticalMenu',true)
+    }
     isVerticalMenuCollapsed.value = !isVerticalMenuCollapsed.value
   }
 

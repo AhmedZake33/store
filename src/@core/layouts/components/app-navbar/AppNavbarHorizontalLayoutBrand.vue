@@ -8,12 +8,12 @@
         >
           <span class="brand-logo">
             <b-img
-              :src="appLogoImage"
+              :src="universityData.icon"
               alt="logo"
             />
           </span>
           <h2 class="brand-text mb-0">
-            {{ appName }}
+            {{ universityData.logo_title }}
           </h2>
         </b-link>
       </li>
@@ -24,11 +24,16 @@
 <script>
 import { BLink, BImg } from 'bootstrap-vue'
 import { $themeConfig } from '@themeConfig'
-
+import { mapActions, mapGetters } from 'vuex';
 export default {
   components: {
     BLink,
     BImg,
+  },
+  computed:{
+    ...mapGetters({
+      universityData: 'app/universityData'
+    }),
   },
   setup() {
     // App Name

@@ -22,6 +22,16 @@ export default function usAppConfig() {
     },
   })
 
+  //-------------------------------------------------
+  // SET RTL
+  //-------------------------------------------------
+  const setRTL = computed({
+    get: () => store.state.appConfig.layout.isRTL,
+    set: val => {
+      store.commit('appConfig/SET_RTL', val)
+    },
+  })
+
   // ------------------------------------------------
   // Skin
   // ------------------------------------------------

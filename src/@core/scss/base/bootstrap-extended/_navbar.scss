@@ -407,7 +407,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 11;
+    z-index: 9;
   }
 }
 
@@ -466,7 +466,7 @@
 
     .disabled {
       &.nav-link {
-        color: $gray-300;
+        color: $gray-900;
       }
     }
   }
@@ -600,7 +600,7 @@
   .header-navbar {
     &.floating-nav {
       width: calc(
-        100vw - (100vw - 100%) - calc(#{$content-padding} + 0.4rem)
+        100vw - (100vw - 100%) - calc(#{$content-padding} + 1rem)
       ) !important; // SM screen calc as per updated spacings
       margin-left: 1rem;
       margin-right: 1.2rem;

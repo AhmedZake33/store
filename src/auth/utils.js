@@ -1,4 +1,5 @@
-import useJwt from '@/auth/jwt/useJwt'
+import Cookies from 'js-cookie'
+import store from '@/store/index'
 
 /**
  * Return if user is logged in
@@ -7,10 +8,10 @@ import useJwt from '@/auth/jwt/useJwt'
  */
 // eslint-disable-next-line arrow-body-style
 export const isUserLoggedIn = () => {
-  return localStorage.getItem('userData') && localStorage.getItem(useJwt.jwtConfig.storageTokenKeyName)
+  return isLogged() && getToken() && getAuth()
 }
 
-export const getUserData = () => JSON.parse(localStorage.getItem('userData'))
+export const getUserData = () => getAuth()
 
 /**
  * This function is used for demo purpose route navigation
@@ -21,7 +22,58 @@ export const getUserData = () => JSON.parse(localStorage.getItem('userData'))
  * @param {String} userRole Role of user
  */
 export const getHomeRouteForLoggedInUser = userRole => {
-  if (userRole === 'admin') return '/'
-  if (userRole === 'client') return { name: 'access-control' }
-  return { name: 'auth-login' }
+  // if (userRole === 'admin') return { name: 'dashboard-ecommerce' }
+  // if (userRole === 'client') return { name: 'access-control' }
+  if (userRole === 'student') return { name: 'student-profile' }
+  return { name:'user-profile' }
+  //return { name: 'auth-login' }
+}
+
+const TokenKey = 'isLogged'
+const Token = 'token'
+const User = 'user'
+
+export function isLogged() {
+  return Cookies.get(TokenKey) === '1'
+}
+
+export function setLogged(isLogged) {
+  return Cookies.set(TokenKey, isLogged)
+}
+
+export function removeToken() {
+  return Cookies.remove(TokenKey)
+}
+
+export function setToken(token) {
+  return Cookies.set(Token, token)
+}
+
+export function getToken() {
+  return Cookies.get(Token)
+}
+
+export function deleteToken() {
+  return Cookies.remove(Token)
+}
+
+export function Auth(user) {
+  return Cookies.set(User, user)
+}
+
+export function getAuth() {
+  return JSON.parse(Cookies.get(User))
+}
+
+export function removeAuth() {
+  return Cookies.remove(User)
+}
+
+export function notHasPermissions() {
+  return Cookies.get(TokenKey) === '2'
+}
+
+export function resetPermission() {
+  store.commit('roles/SET_AUTH_USER_PERMISSIONS', [])
+  store.commit('roles/SET_AUTH_USER_ROLES_PERMISSIONS', [])
 }

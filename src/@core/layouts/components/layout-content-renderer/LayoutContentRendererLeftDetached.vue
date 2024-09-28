@@ -5,10 +5,6 @@
   >
     <div class="content-overlay" />
     <div class="header-navbar-shadow" />
-    <transition
-      :name="routerTransition"
-      mode="out-in"
-    >
       <div
         class="content-wrapper clearfix"
         :class="contentWidth === 'boxed' ? 'container p-0' : null"
@@ -28,7 +24,6 @@
           slim
         />
       </div>
-    </transition>
   </div>
 </template>
 
@@ -41,10 +36,10 @@ export default {
     AppBreadcrumb,
   },
   setup() {
-    const { routerTransition, contentWidth } = useAppConfig()
+    const { contentWidth } = useAppConfig()
 
     return {
-      routerTransition, contentWidth,
+      contentWidth,
     }
   },
 }

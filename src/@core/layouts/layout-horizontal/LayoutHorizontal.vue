@@ -61,10 +61,6 @@
 
     <!-- CONTENT -->
     <!-- CONTENT TYPE: Left -->
-    <transition
-      :name="routerTransition"
-      mode="out-in"
-    >
       <component
         :is="layoutContentRenderer"
         :key="layoutContentRenderer === 'layout-content-renderer-left' ? $route.meta.navActiveLink || $route.name : null"
@@ -79,7 +75,6 @@
           />
         </template>
       </component>
-    </transition>
     <!--/ Content -->
     <!--/ CONTENT -->
 
@@ -154,7 +149,6 @@ export default {
       skin,
       navbarType,
       footerType,
-      routerTransition,
       isNavMenuHidden,
     } = useAppConfig()
 
@@ -193,8 +187,6 @@ export default {
       // Menu Hidden
       isNavMenuHidden,
 
-      // Router Transition
-      routerTransition,
 
       // Footer
       footerTypeClass,

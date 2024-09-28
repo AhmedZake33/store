@@ -48,10 +48,6 @@
     <!-- Content -->
 
     <!-- CONTENT TYPE: Left -->
-    <transition
-      :name="routerTransition"
-      mode="out-in"
-    >
       <component
         :is="layoutContentRenderer"
         :key="layoutContentRenderer === 'layout-content-renderer-left' ? $route.meta.navActiveLink || $route.name : null"
@@ -66,7 +62,6 @@
           />
         </template>
       </component>
-    </transition>
     <!--/ Content -->
 
     <!-- Footer -->
@@ -80,7 +75,7 @@
     </footer>
     <!-- /Footer -->
 
-    <slot name="customizer" />
+    <!-- <slot name="customizer" /> -->
   </div>
 </template>
 
@@ -119,7 +114,7 @@ export default {
   },
   setup() {
     const {
-      routerTransition, navbarBackgroundColor, navbarType, footerType, isNavMenuHidden,
+      navbarBackgroundColor, navbarType, footerType, isNavMenuHidden,
     } = useAppConfig()
 
     const {
@@ -150,7 +145,6 @@ export default {
       footerTypeClass,
 
       // App Config
-      routerTransition,
       navbarBackgroundColor,
       isNavMenuHidden,
     }

@@ -21,20 +21,22 @@
   tfoot {
     th {
       vertical-align: top;
-      text-transform: uppercase;
+      text-transform: capitalize;
       font-size: $table-th-font-size;
       letter-spacing: 0.5px;
     }
   }
   th,
   td {
-    padding: $table-cell-padding 2rem;
+    padding: $table-cell-padding 0;
+    padding-inline-start: 30px !important;
     vertical-align: middle;
   }
   &.table-sm {
     th,
     td {
-      padding: $table-cell-padding-sm 0.5rem;
+      padding: $table-cell-padding-sm 0;
+      padding-inline-start: 15px !important;
       &:first-child {
         padding-left: 0.75rem;
       }

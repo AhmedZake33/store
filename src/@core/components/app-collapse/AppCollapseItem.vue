@@ -1,30 +1,12 @@
 <template>
-  <b-card
-    no-body
-    :class="{'open': visible}"
-    @mouseenter="collapseOpen"
-    @mouseleave="collapseClose"
-  >
-    <b-card-header
-
-      :class="{'collapsed': !visible}"
-      :aria-expanded="visible ? 'true' : 'false'"
-      :aria-controls="collapseItemID"
-      role="tab"
-      data-toggle="collapse"
-      @click="updateVisible(!visible)"
-    >
+  <b-card no-body :class="{ open: visible }" @mouseenter="collapseOpen" @mouseleave="collapseClose">
+    <b-card-header :class="{ collapsed: !visible }" :aria-expanded="visible ? 'true' : 'false'" :aria-controls="collapseItemID" role="tab" data-toggle="collapse" @click="updateVisible(!visible)">
       <slot name="header">
         <span class="lead collapse-title">{{ title }}</span>
       </slot>
     </b-card-header>
 
-    <b-collapse
-      :id="collapseItemID"
-      v-model="visible"
-      :accordion="accordion"
-      role="tabpanel"
-    >
+    <b-collapse @show="init()" :id="collapseItemID" v-model="visible" :accordion="accordion" role="tabpanel">
       <b-card-body>
         <slot />
       </b-card-body>
@@ -33,10 +15,8 @@
 </template>
 
 <script>
-import {
-  BCard, BCardHeader, BCardBody, BCollapse,
-} from 'bootstrap-vue'
-import { v4 as uuidv4 } from 'uuid'
+import { BCard, BCardHeader, BCardBody, BCollapse } from 'bootstrap-vue';
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
   components: {
@@ -54,34 +34,44 @@ export default {
       type: String,
       required: true,
     },
+    type: {
+      type: String,
+      required: false,
+    },
   },
   data() {
     return {
       visible: false,
       collapseItemID: '',
       openOnHover: this.$parent.hover,
-    }
+    };
   },
   computed: {
     accordion() {
-      return this.$parent.accordion ? `accordion-${this.$parent.collapseID}` : null
+      return this.$parent.accordion ? `accordion-${this.$parent.collapseID}` : null;
     },
   },
   created() {
-    this.collapseItemID = uuidv4()
-    this.visible = this.isVisible
+    this.collapseItemID = uuidv4();
+    this.visible = this.isVisible;
   },
   methods: {
+    init() {
+      if (this.type) {
+        this.$store.dispatch('students/get', { type: this.type, id: this.$route.params.id ? this.$route.params.id : null });
+      }
+    },
     updateVisible(val = true) {
-      this.visible = val
-      this.$emit('visible', val)
+      this.visible = val;
+      this.$emit('visible', val);
     },
     collapseOpen() {
-      if (this.openOnHover) this.updateVisible(true)
+      if (this.openOnHover) this.updateVisible(true);
+      
     },
     collapseClose() {
-      if (this.openOnHover) this.updateVisible(false)
+      if (this.openOnHover) this.updateVisible(false);
     },
   },
-}
+};
 </script>

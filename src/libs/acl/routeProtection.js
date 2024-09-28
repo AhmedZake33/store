@@ -1,5 +1,5 @@
-import ability from './ability'
+import permission from './ability'
 
-export const canNavigate = to => to.matched.some(route => ability.can(route.meta.action || 'read', route.meta.resource))
+export const canNavigate = to => to.matched.some(route => permission(route.meta.permission) || route.meta.public)
 
 export const _ = undefined

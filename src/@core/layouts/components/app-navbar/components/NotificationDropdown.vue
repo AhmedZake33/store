@@ -127,26 +127,26 @@ export default {
   },
   setup() {
     /* eslint-disable global-require */
-    const notifications = [
-      {
-        title: 'Congratulation Sam 🎉',
-        avatar: require('@/assets/images/avatars/6-small.png'),
-        subtitle: 'Won the monthly best seller badge',
-        type: 'light-success',
-      },
-      {
-        title: 'New message received',
-        avatar: require('@/assets/images/avatars/9-small.png'),
-        subtitle: 'You have 10 unread messages',
-        type: 'light-info',
-      },
-      {
-        title: 'Revised Order 👋',
-        avatar: 'MD',
-        subtitle: 'MD Inc. order updated',
-        type: 'light-danger',
-      },
-    ]
+    // const notifications = [
+    //   {
+    //     title: 'Congratulation Sam 🎉',
+    //     avatar: require('@/assets/images/avatars/6-small.png'),
+    //     subtitle: 'Won the monthly best seller badge',
+    //     type: 'light-success',
+    //   },
+    //   {
+    //     title: 'New message received',
+    //     avatar: require('@/assets/images/avatars/9-small.png'),
+    //     subtitle: 'You have 10 unread messages',
+    //     type: 'light-info',
+    //   },
+    //   {
+    //     title: 'Revised Order 👋',
+    //     avatar: 'MD',
+    //     subtitle: 'MD Inc. order updated',
+    //     type: 'light-danger',
+    //   },
+    // ]
     /* eslint-disable global-require */
 
     const systemNotifications = [

@@ -27,6 +27,10 @@ export default {
       state.layout.isRTL = !state.layout.isRTL
       document.documentElement.setAttribute('dir', state.layout.isRTL ? 'rtl' : 'ltr')
     },
+    SET_RTL(state , rtl) {
+      state.layout.isRTL = rtl;
+      document.documentElement.setAttribute('dir', state.layout.isRTL ? 'rtl' : 'ltr')
+    },
     UPDATE_SKIN(state, skin) {
       state.layout.skin = skin
 

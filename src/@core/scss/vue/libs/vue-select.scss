@@ -125,7 +125,7 @@ $vs-dropdown-box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.1);
   // Slide selected option to right on focus
   // * Just like on input focus we get placeholder moved
   .vs--single.vs--open & {
-    transform: translateX(5px);
+    // transform: translateX(5px);
   }
 
   // Close icon in tag
@@ -168,7 +168,7 @@ $vs-dropdown-box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.1);
   border-bottom-color: $input-focus-border-color;
   border-bottom-left-radius: $vs-border-radius;
   border-bottom-right-radius: $vs-border-radius;
-  box-shadow: $input-focus-box-shadow;
+  // box-shadow: $input-focus-box-shadow;
 }
 
 // Tag styling

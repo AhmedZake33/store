@@ -11,9 +11,12 @@
       />
     </b-avatar>
     <div class="truncate">
-      <h2 class="mb-25 font-weight-bolder">
+      <h2 v-if="!small" class="mb-25 font-weight-bolder">
         {{ statistic }}
       </h2>
+      <strong v-if="small" class=" d-block mb-25 font-weight-bolder">
+        {{ statistic }}
+      </strong>
       <span>{{ statisticTitle }}</span>
     </div>
   </b-card>
@@ -28,6 +31,7 @@ export default {
     BAvatar,
   },
   props: {
+    small:Boolean,
     icon: {
       type: String,
       required: true,

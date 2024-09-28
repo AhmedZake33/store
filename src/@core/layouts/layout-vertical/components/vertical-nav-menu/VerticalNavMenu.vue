@@ -2,8 +2,12 @@
   <div
     class="main-menu menu-fixed menu-accordion menu-shadow"
     :class="[
-      { 'expanded': !isVerticalMenuCollapsed || (isVerticalMenuCollapsed && isMouseHovered) },
-      skin === 'semi-dark' ? 'menu-dark' : 'menu-light'
+      {
+        expanded:
+          !isVerticalMenuCollapsed ||
+          (isVerticalMenuCollapsed && isMouseHovered),
+      },
+      skin === 'semi-dark' ? 'menu-dark' : 'menu-light',
     ]"
     @mouseenter="updateMouseHovered(true)"
     @mouseleave="updateMouseHovered(false)"
@@ -17,21 +21,17 @@
         :collapseTogglerIcon="collapseTogglerIcon"
       >
         <ul class="nav navbar-nav flex-row">
-
           <!-- Logo & Text -->
           <li class="nav-item mr-auto">
-            <b-link
-              class="navbar-brand"
-              to="/"
-            >
+            <b-link class="navbar-brand" to="/">
               <span class="brand-logo">
                 <b-img
-                  :src="appLogoImage"
+                  :src="universityData && universityData.icon"
                   alt="logo"
                 />
               </span>
               <h2 class="brand-text">
-                {{ appName }}
+                {{ universityData && universityData.logo_title }}
               </h2>
             </b-link>
           </li>
@@ -59,20 +59,27 @@
     <!-- / main menu header-->
 
     <!-- Shadow -->
-    <div
-      :class="{'d-block': shallShadowBottom}"
-      class="shadow-bottom"
-    />
+    <div :class="{ 'd-block': shallShadowBottom }" class="shadow-bottom" />
 
     <!-- main menu content-->
     <vue-perfect-scrollbar
+      v-if="userAccessPermissions"
       :settings="perfectScrollbarSettings"
       class="main-menu-content scroll-area"
       tagname="ul"
-      @ps-scroll-y="evt => { shallShadowBottom = evt.srcElement.scrollTop > 0 }"
+      @ps-scroll-y="
+        (evt) => {
+          shallShadowBottom = evt.srcElement.scrollTop > 0;
+        }
+      "
     >
       <vertical-nav-menu-items
-        :items="navMenuItems"
+        v-if="authUser().type && authUser().type.type"
+        :items="
+          authUser().type && authUser().type.type == 3
+            ? studentMenu
+            : navMenuItems
+        "
         class="navigation navigation-main"
       />
     </vue-perfect-scrollbar>
@@ -81,21 +88,27 @@
 </template>
 
 <script>
-import navMenuItems from '@/navigation/vertical'
-import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import { BLink, BImg } from 'bootstrap-vue'
-import { provide, computed, ref } from '@vue/composition-api'
-import useAppConfig from '@core/app-config/useAppConfig'
-import { $themeConfig } from '@themeConfig'
-import VerticalNavMenuItems from './components/vertical-nav-menu-items/VerticalNavMenuItems.vue'
-import useVerticalNavMenu from './useVerticalNavMenu'
-
+import navMenuItems from "@/navigation/vertical";
+import studentMenu from "@/navigation/student_menu";
+import VuePerfectScrollbar from "vue-perfect-scrollbar";
+import { BLink, BImg } from "bootstrap-vue";
+import { provide, computed, ref } from "@vue/composition-api";
+import useAppConfig from "@core/app-config/useAppConfig";
+import { $themeConfig } from "@themeConfig";
+import VerticalNavMenuItems from "./components/vertical-nav-menu-items/VerticalNavMenuItems.vue";
+import useVerticalNavMenu from "./useVerticalNavMenu";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     VuePerfectScrollbar,
     VerticalNavMenuItems,
     BLink,
     BImg,
+  },
+  data() {
+    return {
+      menuIcon: false,
+    };
   },
   props: {
     isVerticalMenuActive: {
@@ -107,6 +120,18 @@ export default {
       required: true,
     },
   },
+  mounted() {
+    // this.$store.commit('verticalMenu/UPDATE_VERTICAL_MENU_COLLAPSED', localStorage.getItem('verticalMenu'))
+  },
+  computed: {
+    ...mapGetters({
+      universityData: "app/universityData",
+      userAccessPermissions: "roles/userAccessPermissions",
+    }),
+  },
+  beforeMount() {
+    this.$store.commit("verticalMenu/initialiseVars");
+  },
   setup(props) {
     const {
       isMouseHovered,
@@ -114,24 +139,28 @@ export default {
       collapseTogglerIcon,
       toggleCollapsed,
       updateMouseHovered,
-    } = useVerticalNavMenu(props)
+    } = useVerticalNavMenu(props);
 
-    const { skin } = useAppConfig()
+    const { skin } = useAppConfig();
 
     // Shadow bottom is UI specific and can be removed by user => It's not in `useVerticalNavMenu`
-    const shallShadowBottom = ref(false)
+    const shallShadowBottom = ref(false);
 
-    provide('isMouseHovered', isMouseHovered)
+    provide("isMouseHovered", isMouseHovered);
 
     const perfectScrollbarSettings = {
       maxScrollbarLength: 60,
       wheelPropagation: false,
-    }
+    };
 
-    const collapseTogglerIconFeather = computed(() => (collapseTogglerIcon.value === 'unpinned' ? 'CircleIcon' : 'DiscIcon'))
+    const collapseTogglerIconFeather = computed(() =>
+      collapseTogglerIcon.value === "unpinned"
+        ? "ArrowRightIcon"
+        : "ArrowLeftIcon"
+    );
 
     // App Name
-    const { appName, appLogoImage } = $themeConfig.app
+    const { appName, appLogoImage } = $themeConfig.app;
 
     return {
       navMenuItems,
@@ -142,7 +171,7 @@ export default {
       isMouseHovered,
       updateMouseHovered,
       collapseTogglerIconFeather,
-
+      studentMenu,
       // Shadow Bottom
       shallShadowBottom,
 
@@ -152,9 +181,9 @@ export default {
       // App Name
       appName,
       appLogoImage,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss">

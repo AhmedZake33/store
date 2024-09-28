@@ -1,0 +1,71 @@
+export default [
+  {
+    path: '/student-profile',
+    name:'student_profile',
+    permission: 'access_student',
+    component: () => import('@/views/for_student/profile/personal'),
+    meta: { pageTitle: 'personal', breadcrumb: [{ text: 'personal', active: true }] },
+  },
+
+  {
+    path: '/student-academic',
+    name:'student_academic',
+    permission: 'access_student',
+    component: () => import('@/views/for_student/profile/academic'),
+    meta: { pageTitle: 'academic', breadcrumb: [{ text: 'academic', active: true }] },
+  },
+  {
+    path: '/offering/registration',
+    name:'offering_registration',
+    permission: 'access_student',
+    component: () => import('@/views/for_student/offering/registration'),
+    meta: { pageTitle: 'offering_registration', breadcrumb: [{ text: 'offering_registration', active: true }] },
+  },
+  {
+    path: '/services/certification',
+    name: 'certification',
+    permission: 'access_student',
+    component: () => import('@/views/for_student/service/certification/show'),
+    meta: { pageTitle: 'Certificates', breadcrumb: [{ text: 'Certificates'}] },
+  },
+  {
+    path: '/services/certification/add',
+    name: 'add_certification',
+    permission: 'access_student',
+    component: () => import('@/views/for_student/service/certification/add'),
+    meta: { pageTitle: 'Certificates', breadcrumb: [{ text: 'Certificates', active: true }] },
+  },
+  {
+    path: '/services/certification/edit/:id',
+    name: 'edit_certification',
+    permission: 'access_student',
+    component: () => import('@/views/for_student/service/certification/add'),
+    meta: { pageTitle: 'Certificates', breadcrumb: [{ text: 'Certificates', active: true }] },
+  },
+  {
+    path: '/myCourses',
+    name:'my_courses',
+    // permission: 'access_student',
+    component: () => import('@/views/for_student/my_courses/index'),
+    meta: { pageTitle: 'My Courses', breadcrumb: [{ text: 'My Courses', active: true }] },
+  },
+  {
+    path: '/myCourses/:offering_id',
+    name:'show_my_course',
+    permission: 'access_student',
+    component: () => import('@/views/for_student/my_courses/show'),
+    meta: { pageTitle: 'Show Course', breadcrumb: [{ to: '/myCourses', text: 'My Courses' },{ text: 'Show Course', active: true }] },
+  },
+  {
+    path: '/correction_requests',
+    name: 'my_correction_requests',
+    component: () => import('@/views/for_student/correction_requests/index'),
+    meta: { pageTitle: 'Correction Requests', breadcrumb: [{ text: 'students'} , { text: 'Correction Requests', active: true }] },
+  },
+  {
+    path: '/correction_requests/add',
+    name: 'add_correction_request',
+    component: () => import('@/views/for_student/correction_requests/add'),
+    meta: { pageTitle: 'Add Correction Requests ', breadcrumb: [{ to: '/correction_requests', text: 'Correction Requests' },{ text: 'Request New Correction', active: true }] },
+  },
+];

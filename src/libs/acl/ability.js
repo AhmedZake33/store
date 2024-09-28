@@ -1,11 +1,11 @@
-import { Ability } from '@casl/ability'
-import { initialAbility } from './config'
-
-//  Read ability from localStorage
-// * Handles auto fetching previous abilities if already logged in user
-// ? You can update this if you store user abilities to more secure place
-// ! Anyone can update localStorage so be careful and please update this
-const userData = JSON.parse(localStorage.getItem('userData'))
-const existingAbility = userData ? userData.ability : null
-
-export default new Ability(existingAbility || initialAbility)
+import store from '@/store'
+export default function Permission(permission) {
+  return true
+}
+// export default function Permission(permission) {
+//   if (store.getters['roles/authUserRolesPermissionsName'].length > 0 || store.getters['roles/authUserPermissionsName'].length > 0) {
+//     return store.getters['roles/authUserRolesPermissionsName'].includes(permission) || store.getters['roles/authUserPermissionsName'].includes(permission)
+//   } else {
+//     return true
+//   }
+// }

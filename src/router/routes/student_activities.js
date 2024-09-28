@@ -1,0 +1,35 @@
+export default [{
+    path: '/trainings',
+    name: 'trainings',
+    permission: 'access_training',
+    component: () => import('@/views/student_activities/trainings/index'),
+    meta: { pageTitle: 'Trainings', breadcrumb: [{ text: 'Trainings' }] },
+},
+{
+    path: '/students-trainings',
+    name: 'students_trainings',
+    permission: 'access_training',
+    component: () => import('@/views/student_activities/trainings/students_trainings'),
+    meta: { pageTitle: 'Students Trainings', breadcrumb: [{ text: 'Students Trainings' }] },
+},
+{
+    path: '/trainings/add',
+    name: 'add_training',
+    permission: 'add_training',
+    component: () => import('@/views/student_activities/trainings/add'),
+    meta: { pageTitle: 'Add Training', breadcrumb: [{ text: 'Trainings', to: '/trainings', }, { text: 'Add', active: true }] },
+},
+{
+    path: '/trainings/:id?',
+    name: 'show_training',
+    permission: 'add_training',
+    component: () => import('@/views/student_activities/trainings/show'),
+    meta: { pageTitle: 'Show Training', breadcrumb: [{ text: 'Trainings', to: '/trainings', }, { text: 'Show', active: true }] },
+},
+{
+    path: '/trainings/student/:training_student_id',
+    name: 'show_student_training',
+    permission: 'add_training',
+    component: () => import('@/views/student_activities/trainings/student'),
+    meta: { pageTitle: 'Show Training', breadcrumb: [{ text: 'Trainings', to: '/trainings', }, { text: 'Show', active: true }] },
+}];

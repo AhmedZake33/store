@@ -1,6 +1,6 @@
 <template>
+<!--  v-if="canViewVerticalNavMenuGroup(item)"-->
   <li
-    v-if="canViewVerticalNavMenuGroup(item)"
     class="nav-item has-sub"
     :class="{
       'open': isOpen,
@@ -34,6 +34,8 @@
         :key="child.header || child.title"
         ref="groupChild"
         :item="child"
+        v-if="!child.permission || hasPermission(child.permission)"
+
       />
     </b-collapse>
   </li>

@@ -6,11 +6,20 @@ export default [
     tagVariant: 'light-warning',
     children: [
       {
-        title: 'eCommerce',
-        route: 'dashboard-ecommerce',
+        title: 'Categories',
+        children: [
+          {
+            title: 'Categories',
+            route: 'category-list',
+          },
+          {
+            title: 'Add',
+            route: 'category-add',
+          }
+        ],
       },
       {
-        title: 'Analytics',
+        title: 'Products',
         route: 'dashboard-analytics',
       },
     ],
