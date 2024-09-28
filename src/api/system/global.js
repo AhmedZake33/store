@@ -43,15 +43,7 @@ class Global {
       params: query,
     });
   }
-
-  getUniversityData(query = {}) {
-    return request({
-      url: '/university/data',
-      method: 'get',
-      params: query,
-    });
-  }
-
+  
   getGroupedUniversityData(query = {}) {
     return request({
       url: '/university/data_grouped',

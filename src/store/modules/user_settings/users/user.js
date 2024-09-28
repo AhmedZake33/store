@@ -76,7 +76,6 @@ const userModule = {
           .then(response => {
             setLogged('1');
             setToken(response.data.token);
-            delete response.data.instructor_data
             Auth(response.data);
             resolve();
           })

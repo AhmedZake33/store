@@ -219,19 +219,19 @@ export default {
     window.removeEventListener('resize', this.handleResizeGlobal);
   },
   beforeCreate() {
-    axios
-      .get(`${process.env.VUE_APP_BASE_URL}/system/current-terms`)
-      .then((res) => {
-        this.$store.commit('app/SET_TERMS', {
-          current_admission_term: res.data.data.current_admission_term,
-          current_admission_term_PG: res.data.data.current_admission_term_PG,
-          current_admission_term_UG: res.data.data.current_admission_term_UG,
-          current_control_term: res.data.data.current_control_term,
-          current_exam_term: res.data.data.current_exam_term,
-          current_term: res.data.data.current_term,
-          current_transfer_term: res.data.data.current_transfer_term,
-        });
-      });
+    // axios
+    //   .get(`${process.env.VUE_APP_BASE_URL}/system/current-terms`)
+    //   .then((res) => {
+    //     this.$store.commit('app/SET_TERMS', {
+    //       current_admission_term: res.data.data.current_admission_term,
+    //       current_admission_term_PG: res.data.data.current_admission_term_PG,
+    //       current_admission_term_UG: res.data.data.current_admission_term_UG,
+    //       current_control_term: res.data.data.current_control_term,
+    //       current_exam_term: res.data.data.current_exam_term,
+    //       current_term: res.data.data.current_term,
+    //       current_transfer_term: res.data.data.current_transfer_term,
+    //     });
+    //   });
     this.$store.commit('verticalMenu/initialiseVars');
     // Set colors in theme
     const colors = [
@@ -301,10 +301,7 @@ export default {
 
     // for live data chat notification and other
     if (this.authUser().id) {
-    this.getUserLiveData();
-    this.getUniversityData();
     setInterval(() => {
-      this.getUserLiveData();
     }, 180000);
     }
     const events = ['click', 'mousemove', 'mousedown', 'keydown'];

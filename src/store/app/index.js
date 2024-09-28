@@ -312,14 +312,7 @@ export default {
         });
       });
     },
-    GET_UNIVERSITY_DATA({ commit }, params) {
-      return new Promise((resolve, reject) => {
-        global.getUniversityData(params).then((response) => {
-          commit('SET_MAIN_UNIVERSITY_DATA', response.data);
-          resolve(response);
-        });
-      });
-    },
+    
     GET_GROUPED_UNIVERSITY_DATA({ commit }, params) {
       return new Promise((resolve, reject) => {
         global.getGroupedUniversityData(params).then((response) => {
